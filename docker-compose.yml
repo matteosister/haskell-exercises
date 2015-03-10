@@ -1,2 +1,4 @@
 haskell:
-  build: .
+    build: .
+    volumes:
+        - .:/code

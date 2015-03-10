@@ -1,6 +1,10 @@
-FROM haskell:7.8
+FROM ubuntu:14.04
 
-WORKDIR /code
 VOLUME /code
 
-CMD ["runhaskell"]
+WORKDIR /code
+
+RUN apt-get update && apt-get install -qy haskell-platform
+RUN cabal update && cabal install hspec
+
+ENTRYPOINT ["runhaskell"]

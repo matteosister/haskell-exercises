@@ -1,5 +1,5 @@
 -- https://wiki.haskell.org/99_questions/1_to_10
-module Exercises where
+module List1 where
 	-- 1. Find the last element of a list
 	myLast :: [a] -> a
 	myLast [] = error "No end for an empty list"
@@ -46,4 +46,18 @@ module Exercises where
 		foldingFunction [] el = [el]
 		foldingFunction l el  = if last l == el then l else l ++ [el]
 
-		-- (\carry elem -> if last carry == elem then carry else carry ++ [elem])
+	-- 9. Pack consecutive duplicates of list elements into sublists. 
+	-- If a list contains repeated elements they should be placed in separate sublists.
+	pack :: (Eq a) => [a] -> [[a]]
+	pack = foldr func [] where 
+        func el [] = [[el]]
+        func el (y:xs) =
+            if el == (head y) then ((el:y):xs) else ([el]:y:xs)
+
+    -- 10. Run-length encoding of a list
+	encode :: [Char] -> [(Int, Char)]
+	encode = foldl func [] where 
+		func [] el = [(1, el)]
+		func list el
+			| snd (last list) == el = init list ++ [(fst (last list) + 1, el)]
+			| otherwise             = list ++ [(1, el)]
