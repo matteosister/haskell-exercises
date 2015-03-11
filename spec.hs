@@ -28,6 +28,23 @@ main = hspec $ do
 			encode "aabbcde" `shouldBe` ([(2,'a'),(2,'b'),(1,'c'),(1,'d'),(1,'e')] :: [(Int,Char)])
 
 	describe "lists 2" $ do
-		it "run Run-length with single/multiple elements" $ do
+		it "11. run Run-length with single/multiple elements" $ do
 			encodeModified "aaaabccdeeee" `shouldBe` ([Multiple 4 'a',Single 'b',Multiple 2 'c',Single 'd',Multiple 4 'e'] :: [Element Char])
 			encodeModified "a" `shouldBe` ([Single 'a'] :: [Element Char])
+
+		it "12. Decode a run-length encoded list." $ do
+			decodeModified [Multiple 4 'a',Single 'b',Multiple 2 'c',Multiple 2 'a',Single 'd',Multiple 4 'e'] `shouldBe` "aaaabccaadeeee"
+			decodeModified [Multiple 2 'a',Single 'b'] `shouldBe` "aab"
+
+		it "14. Duplicate the elements of a list." $ do
+			dupli [1, 2, 3] `shouldBe` [1,1,2,2,3,3]
+			dupli' [1, 2, 3] `shouldBe` [1,1,2,2,3,3]
+
+		it "15. Replicate the elements of a list a given number of times" $ do
+			repli "abc" 3 `shouldBe` "aaabbbccc"
+			repli [1,2] 2 `shouldBe` [1,1,2,2]
+
+		it "16. Drop every N'th element from a list." $ do
+			dropEvery "abcdefghik" 3 `shouldBe` "abdeghk"
+			dropEvery "" 3 `shouldBe` ""
+			--dropEvery [] 2 `shouldBe` ([])
