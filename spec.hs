@@ -48,3 +48,14 @@ main = hspec $ do
 			dropEvery "abcdefghik" 3 `shouldBe` "abdeghk"
 			dropEvery "" 3 `shouldBe` ""
 			--dropEvery [] 2 `shouldBe` ([])
+
+		it "17. Split a list into two parts; the length of the first part is given." $ do
+			split "abcdefghik" 3 `shouldBe` ("abc", "defghik")
+			split "abc" 3 `shouldBe` ("abc", "")
+			split "abc" 5 `shouldBe` ("abc", "")
+
+		it "18. Extract a slice from a list." $ do
+			slice ['a','b','c','d','e','f','g','h','i','k'] 3 7 `shouldBe` "cdefg"
+			slice ['a','b','c','d','e','f','g','h','i','k'] 3 100 `shouldBe` "cdefghik"
+			slice ['a','b','c','d','e','f','g','h','i','k'] 5 6 `shouldBe` "ef"
+			slice ['a','b'] 3 100 `shouldBe` ""

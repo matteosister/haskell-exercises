@@ -34,3 +34,10 @@ module List2 where
 	dropEvery :: [a] -> Int -> [a]
 	dropEvery [] _ = []
 	dropEvery list num = concat $ map (take (num - 1)) (chunksOf num list)
+
+	split :: [a] -> Int -> ([a],[a])
+	split = flip splitAt
+
+	slice :: [a] -> Int -> Int -> [a]
+	slice list start end = drop (start - 1) . take end $ list
+
