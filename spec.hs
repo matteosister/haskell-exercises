@@ -59,3 +59,10 @@ main = hspec $ do
 			slice ['a','b','c','d','e','f','g','h','i','k'] 3 100 `shouldBe` "cdefghik"
 			slice ['a','b','c','d','e','f','g','h','i','k'] 5 6 `shouldBe` "ef"
 			slice ['a','b'] 3 100 `shouldBe` ""
+
+		it "19. Rotate a list N places to the left" $ do
+			rotate ['a','b','c','d','e','f','g','h'] 3 `shouldBe` "defghabc"
+			rotate ['a','b','c','d','e','f','g','h'] (-2) `shouldBe` "ghabcdef"
+
+		--it "20. Remove the K'th element from a list" $ do
+		--	removeAt 2 "abcd" `shouldBe` ('b',"acd")

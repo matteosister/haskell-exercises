@@ -41,3 +41,13 @@ module List2 where
 	slice :: [a] -> Int -> Int -> [a]
 	slice list start end = drop (start - 1) . take end $ list
 
+	rotate :: [a] -> Int -> [a]
+	rotate [] _ = []
+	rotate l  0 = l
+	rotate list num
+		| num > 0   = joiner $ splitAt num list
+		| num < 0   = joiner $ splitAt ((length list) + num) list
+			where joiner = \(x,y) -> y ++ x
+
+	-- removeAt :: Int -> [a] -> (a,[a])
+	-- removeAt num list = foldl (\carry el -> list ++ [el]) [] list
