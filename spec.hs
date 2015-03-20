@@ -3,6 +3,7 @@ import Test.QuickCheck
 import Control.Exception (evaluate)
 import List1
 import List2
+import List3
 
 main :: IO ()
 main = hspec $ do
@@ -64,5 +65,10 @@ main = hspec $ do
 			rotate ['a','b','c','d','e','f','g','h'] 3 `shouldBe` "defghabc"
 			rotate ['a','b','c','d','e','f','g','h'] (-2) `shouldBe` "ghabcdef"
 
-		--it "20. Remove the K'th element from a list" $ do
-		--	removeAt 2 "abcd" `shouldBe` ('b',"acd")
+		it "20. Remove the K'th element from a list" $ do
+			removeAt 2 "abcd" `shouldBe` ('b',"acd")
+
+	describe "list 3" $ do
+		it "21. Insert an element at a given position into a list." $ do
+			-- insertAt 'X' "abcd" 0 `shouldThrow` anyException
+			insertAt 'X' "abcd" 2 `shouldBe` "aXbcd"
