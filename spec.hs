@@ -4,6 +4,7 @@ import Control.Exception (evaluate)
 import List1
 import List2
 import List3
+import Arithmetic
 
 main :: IO ()
 main = hspec $ do
@@ -72,3 +73,10 @@ main = hspec $ do
 		it "21. Insert an element at a given position into a list." $ do
 			-- insertAt 'X' "abcd" 0 `shouldThrow` anyException
 			insertAt 'X' "abcd" 2 `shouldBe` "aXbcd"
+
+		it "22. Create a list containing all integers within a given range." $ do
+			range 4 9 `shouldBe` [4,5,6,7,8,9]
+
+	describe "arithmetic" $ do
+		it "31. Determine whether a given integer number is prime." $ do
+			isPrime 7 `shouldBe` True
